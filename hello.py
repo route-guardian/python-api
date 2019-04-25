@@ -1,8 +1,17 @@
 from flask import Flask
 from flask import request
 from route import route_api
+from flask_pymongo import PyMongo
+
 app = Flask(__name__)
- 
+
+# Setup the mongoDB
+app.config["MONGO_DBNAME"] = "testing"
+app.config["MONGO_URI"] = "mongodb://localhost:27017/firstDB"
+# Add mongo to server
+mongo = PyMongo(app)
+
+# This blueprint adds other routes from other files
 app.register_blueprint(route_api)
 
 
