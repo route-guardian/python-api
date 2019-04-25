@@ -1,5 +1,5 @@
 # Node docker image on which this would be run
-# image: python:3.7.3
+image: python:3.7.3
 
 #This command is run before actual stages start running
 # before_script:
