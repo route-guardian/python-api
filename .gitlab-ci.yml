@@ -1,0 +1,24 @@
+# Node docker image on which this would be run
+# image: python:3.7.3
+
+#This command is run before actual stages start running
+# before_script:
+  # - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  # - pip 
+
+stages:
+  - test
+  # - deploy
+
+# Job 1:
+test:
+  stage: test
+  script:
+    py test.py
+
+# deployToAWS:
+#   only:
+#     - master
+#   stage: deploy
+#   script:
+#     - bash deploy/deploy.sh
