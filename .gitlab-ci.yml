@@ -15,7 +15,10 @@ stages:
 test:
   stage: test
   script:
-    py test.py
+    - py --version
+    - py test.py
+    - python --version
+    - python test.py
 
 # deployToAWS:
 #   only:
