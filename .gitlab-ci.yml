@@ -15,8 +15,8 @@ stages:
 test:
   stage: test
   script:
-    - py --version
-    - py test.py
+    # - py --version
+    # - py test.py
     - python --version
     - python test.py
 
