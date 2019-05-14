@@ -4,5 +4,5 @@
 Add models for posting objects if needed look at : https://pythonhosted.org/Flask-MongoAlchemy/
 
 ## Packages:
-  -flask <br />
-  -PyMongo
+  - flask
+  - PyMongo

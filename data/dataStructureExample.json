@@ -1,0 +1,20 @@
+{
+    "Charlois": {
+            "Tarwewijk" : {
+                "id": 71,
+                "data": {
+                    "Veiligheidsindex" : 73,
+                    "Veiligheidsindex -subjectief" : 54
+                }
+            },
+            "Carnisse" : {
+                "id": 71,
+                "data": {
+                    "Veiligheidsindex" : 86,
+                    "Veiligheidsindex -subjectief" : 68
+                }
+            }
+    },
+    "Delfshaven": {
+    }
+}
