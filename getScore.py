@@ -34,22 +34,40 @@ for key , district in data.items():
 # Get started with index    
 # Get highest and lowest value out of loop
 
+i=0
+j=0
+allValues = {}
+
+# In these for loops all the values get tosses in the object allValues and get added to the array where they belong
 for gebied, district in data.items():
     for district, value in district.items():
         for key, value in value['data'].items():
-            # print(key)
-            # print(value)
-            # overwrite value with new calulated index
-            # print (key)
-            print(key)
-            print(data[gebied][district][key])
-            # data[gebied][district][key] 
-            # print(data)
+            if j>0:
+                allValues[i].append(value)
+            else:
+                allValues[i] = [value]
+            i+=1
+        pass
+        i=0
+        j=1
+    pass
+
+print(allValues)
+
+a = 0 
+#for loops to change the highest instance  
+for gebied, district in data.items():
+    for district, value in district.items():
+        for key, value in value['data'].items():       
+            # Overwrite old value with new value
+            data[gebied][district]['data'][key] = mapFromTo(data[gebied][district]['data'][key], max(allValues[a]), min(allValues[a]), 1, 5) # Get data from function   
+            a +=1       
             pass
+        a = 0
         pass
     pass
 
-
+print (data)
 
 # print (mapFromTo(20, 30, 0, 1,5))
 
