@@ -1,17 +1,25 @@
+import re
 data = {
     "Charlois": {
             "Tarwewijk" : {
                 "id": 71,
                 "data": {
                     "Veiligheidsindex" : 73,
-                    "Veiligheidsindex -subjectief" : 54
+                    "Veiligheidsindex -subjectief" : "50%"
                 }
             },
             "Carnisse" : {
                 "id": 71,
                 "data": {
-                    "Veiligheidsindex" : 86,
-                    "Veiligheidsindex -subjectief" : 68
+                    "Veiligheidsindex" : 50,
+                    "Veiligheidsindex -subjectief" : "70%" 
+                }
+            },
+            "ss" : {
+                "id": 71,
+                "data": {
+                    "Veiligheidsindex" : 60,
+                    "Veiligheidsindex -subjectief" : "60%" 
                 }
             }
     }
@@ -22,8 +30,8 @@ data = {
 # c,d -> in wat voor categorien moet het worden outgeput
 # y de value die hij returnt,
 def mapFromTo(x,a,b,c,d): 
-   y=(x-a)/(b-a)*(d-c)+c
-   return round(y)
+    y=(x-a)/(b-a)*(d-c)+c
+    return round(y)
 
 for key , district in data.items():
     
@@ -42,6 +50,10 @@ allValues = {}
 for gebied, district in data.items():
     for district, value in district.items():
         for key, value in value['data'].items():
+            # change string percentages to ints
+            if isinstance(value, str):
+                value = int(value.strip('%'))
+
             if j>0:
                 allValues[i].append(value)
             else:
@@ -58,9 +70,13 @@ a = 0
 #for loops to change the highest instance  
 for gebied, district in data.items():
     for district, value in district.items():
-        for key, value in value['data'].items():       
+        for key, value in value['data'].items():
+            value = data[gebied][district]['data'][key]
+            if isinstance(value, str):
+                value = int(value.strip('%'))
+            print (value)
             # Overwrite old value with new value
-            data[gebied][district]['data'][key] = mapFromTo(data[gebied][district]['data'][key], max(allValues[a]), min(allValues[a]), 1, 5) # Get data from function   
+            data[gebied][district]['data'][key] = mapFromTo(value, min(allValues[a]), max(allValues[a]), 1, 5) # Get data from function   
             a +=1       
             pass
         a = 0
