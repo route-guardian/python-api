@@ -1,5 +1,11 @@
 import re
-data = {
+import json
+from pprint import pprint
+# get data from json file
+with open('data/rotterdam_safety_data.json') as f:
+    data = json.load(f)
+
+testData = {
     "Charlois": {
             "Tarwewijk" : {
                 "id": 71,
@@ -64,8 +70,7 @@ for gebied, district in data.items():
         j=1
     pass
 
-print(allValues)
-
+#value to keep track of looping
 a = 0 
 #for loops to change the highest instance  
 for gebied, district in data.items():
