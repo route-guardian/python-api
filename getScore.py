@@ -1,11 +1,26 @@
 import re
 import json
 from pprint import pprint
+from flask import Flask
+from flask_pymongo import PyMongo
+
+#Start mongo instance to save data in db 
+app = Flask(__name__)
+
+# Setup the mongoDB
+app.config["MONGO_DBNAME"] = "safetyScore"
+app.config["MONGO_URI"] = "mongodb://localhost:27017/safetyScore"
+# Add mongo to server
+mongo = PyMongo(app)
+# Set DB
+safetyScore = mongo.db.safetyScore
+
+
 # get data from json file
 with open('data/rotterdam_safety_data.json') as f:
-    data = json.load(f)
+    testdata = json.load(f)
 
-testData = {
+data = {
     "Charlois": {
             "Tarwewijk" : {
                 "id": 71,
@@ -39,19 +54,10 @@ def mapFromTo(x,a,b,c,d):
     y=(x-a)/(b-a)*(d-c)+c
     return round(y)
 
-for key , district in data.items():
-    
-
-    pass
-
-# index = district["Veiligheidsindex"]
-# Get started with index    
-# Get highest and lowest value out of loop
 
 i=0
 j=0
 allValues = {}
-
 # In these for loops all the values get tosses in the object allValues and get added to the array where they belong
 for gebied, district in data.items():
     for district, value in district.items():
@@ -79,7 +85,6 @@ for gebied, district in data.items():
             value = data[gebied][district]['data'][key]
             if isinstance(value, str):
                 value = int(value.strip('%'))
-            print (value)
             # Overwrite old value with new value
             data[gebied][district]['data'][key] = mapFromTo(value, min(allValues[a]), max(allValues[a]), 1, 5) # Get data from function   
             a +=1       
@@ -89,6 +94,9 @@ for gebied, district in data.items():
     pass
 
 print (data)
+
+safetyScore.insert(data)
+# After update put it in the the db
 
 # print (mapFromTo(20, 30, 0, 1,5))
 
