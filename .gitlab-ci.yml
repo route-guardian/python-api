@@ -31,7 +31,7 @@ deployToAWS:
     - echo "Testing :)"
     - echo "Private key $PRIVATE_KEY :)"
     - echo -e "$PRIVATE_KEY" > ~/.ssh/id_rsa >> ~/.ssh/authorized_keys
-    - chmod 600 ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa > ~/.ssh/authorized_keys
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
     - bash ./deploy/gitlab-deploy.sh
