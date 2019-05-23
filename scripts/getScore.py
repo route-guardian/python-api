@@ -18,9 +18,9 @@ safetyScore = mongo.db.safetyScore
 
 # get data from json file
 with open('../data/rotterdam_safety_data.json') as f:
-    testdata = json.load(f)
+    data = json.load(f)
 
-data = {
+testData = {
     "Charlois": {
             "Tarwewijk" : {
                 "id": 71,
@@ -64,7 +64,7 @@ for gebied, district in data.items():
         for key, value in value['data'].items():
             # change string percentages to ints
             if isinstance(value, str):
-                value = int(value.strip('%'))
+                value = int(round(float(value.strip('%'))))
 
             if j>0:
                 allValues[i].append(value)
@@ -84,7 +84,7 @@ for gebied, district in data.items():
         for key, value in value['data'].items():
             value = data[gebied][district]['data'][key]
             if isinstance(value, str):
-                value = int(value.strip('%'))
+                value = int(round(float(value.strip('%'))))
             # Overwrite old value with new value
             data[gebied][district]['data'][key] = mapFromTo(value, min(allValues[a]), max(allValues[a]), 1, 5) # Get data from function   
             a +=1       
