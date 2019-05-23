@@ -1,6 +1,9 @@
-# Get the highest scores district and maybe order them?
-test = '1.5%'
+from flask_pymongo import MongoClient
 
-rounded = int(round(float(test.strip('%'))))
+client = MongoClient('mongodb://localhost:27017/')
 
-print(rounded)
+db = client.safetyScore
+collection = db.safetyScore
+
+for post in collection.find({}):
+    print(post)
