@@ -37,4 +37,5 @@
 
 sudo su gitlab
 mkdir python-api
+cd python-api
 git clone https://gitlab.com/route-guardian/python-api.git
