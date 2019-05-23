@@ -4,7 +4,6 @@ image: python:3.7.3
 # doe het gvd!
 #This command is run before actual stages start running
 before_script:
-  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
   - pip install flask
   - pip install PyMongo
 
@@ -27,10 +26,11 @@ deployToAWS:
   stage: deploy
   before_script:
     #generate ssh key
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - echo "$PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
     - mkdir -p ~/.ssh
-    - echo "Testing :)"
-    - echo "Private key $PRIVATE_KEY :)"
-    - echo -e "$PRIVATE_KEY" > ~/.ssh/id_rsa >> ~/.ssh/authorized_keys
+    - chmod 700 ~/.ssh
     - chmod 600 ~/.ssh/id_rsa > ~/.ssh/authorized_keys
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   script:
