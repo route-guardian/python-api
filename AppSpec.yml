@@ -3,7 +3,7 @@ os: ubuntu
 files:
   - source: /
     destination: /pyhton-api
-hooks:
+# hooks:
   # BeforeInstall:
   #   - location: scripts/install_dependencies.sh
   #     timeout: 300
