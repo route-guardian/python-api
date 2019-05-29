@@ -3,7 +3,7 @@ from bson.json_util import dumps
 import json
 # For the blueprint export
 route_api = Blueprint('route_api', __name__)
-from route import mongo
+from start import mongo
 # Setuo db in route
 user = mongo.db.users
 
