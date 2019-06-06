@@ -2,6 +2,9 @@ from flask import Flask
 from flask import request
 from route import route_api
 from flask_pymongo import PyMongo
+import socket
+
+print(socket.gethostname())
 
 app = Flask(__name__)
 
@@ -27,4 +30,5 @@ def test():
     return 'ik snap python niet'
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+
+    app.run( use_reloader = True)

@@ -13,11 +13,17 @@ def accountList():
         # Get the data from the request 
         data = json.loads(request.data)
         username = data['name']
+
+        print(data)
+        print(username)
+
         # Check if request was filled and insert in db
         if username: 
             user.insert({
                 "name" : username,
             })
+        else:
+            print("Er is geen user")
         return "Dit is een POST",201
     else:
         # Find all the user in the DB
