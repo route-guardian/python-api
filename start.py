@@ -9,7 +9,7 @@ hostname = socket.gethostname()
 app = Flask(__name__)
 
 # Setup the mongoDB
-app.config["MONGO_DBNAME"] = "testing"
+app.config["MONGO_DBNAME"] = "routeGuardian"
 app.config["MONGO_URI"] = "mongodb://localhost:27017/firstDB"
 # Add mongo to server
 mongo = PyMongo(app)

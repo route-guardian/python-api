@@ -24,7 +24,7 @@ def accountList():
             })
         else:
             print("Er is geen user")
-        return "Dit is een POST",201
+        return username , 201
     else:
         # Find all the user in the DB
         users = mongo.db.users.find({})
