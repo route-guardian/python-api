@@ -4,7 +4,12 @@ from route import route_api
 from flask_pymongo import PyMongo
 import socket
 
-print(socket.gethostname())
+hostname = socket.gethostname()
+
+if 'ip' in hostname:
+    print('ip aanwezig')
+else:
+    print('ip niet aanwezig')
 
 app = Flask(__name__)
 
