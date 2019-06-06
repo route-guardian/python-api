@@ -18,9 +18,9 @@ safetyScore = mongo.db.safetyScore
 
 # get data from json file
 with open('../data/rotterdam_safety_data.json') as f:
-    data = json.load(f)
+    testData = json.load(f)
 
-testData = {
+data = {
     "Charlois": {
             "Tarwewijk" : {
                 "id": 71,
@@ -37,6 +37,29 @@ testData = {
                 }
             },
             "ss" : {
+                "id": 71,
+                "data": {
+                    "Veiligheidsindex" : 60,
+                    "Veiligheidsindex -subjectief" : "60%" 
+                }
+            }
+    },
+    "testing": {
+            "wijk1" : {
+                "id": 71,
+                "data": {
+                    "Veiligheidsindex" : 73,
+                    "Veiligheidsindex -subjectief" : "50%"
+                }
+            },
+            "wijk2" : {
+                "id": 71,
+                "data": {
+                    "Veiligheidsindex" : 50,
+                    "Veiligheidsindex -subjectief" : "70%" 
+                }
+           },
+    "ss" : {
                 "id": 71,
                 "data": {
                     "Veiligheidsindex" : 60,
