@@ -6,11 +6,6 @@ import socket
 
 hostname = socket.gethostname()
 
-if 'ip' in hostname:
-    print('ip aanwezig')
-else:
-    print('ip niet aanwezig')
-
 app = Flask(__name__)
 
 # Setup the mongoDB
@@ -35,5 +30,7 @@ def test():
     return 'ik snap python niet'
 
 if __name__ == "__main__":
-
-    app.run( use_reloader = True)
+    if 'ip' in hostname:
+        app.run(host="0.0.0.0", port=80)
+    else:
+        app.run( use_reloader = True)
