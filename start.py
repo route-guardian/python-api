@@ -17,7 +17,6 @@ mongo = PyMongo(app)
 # This blueprint adds other routes from other files
 app.register_blueprint(route_api)
 
-
 @app.route("/", methods = ["GET", "POST"])
 def hello():
     if request.method == 'POST':
@@ -31,6 +30,6 @@ def test():
 
 if __name__ == "__main__":
     if 'ip' in hostname:
-        app.run(host="0.0.0.0", port=80)
+        app.run(host="0.0.0.0")
     else:
         app.run( use_reloader = True)
