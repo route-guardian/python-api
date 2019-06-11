@@ -18,9 +18,9 @@ safetyScore = mongo.db.safetyScore
 
 # get data from json file
 with open('../data/rotterdam_safety_data.json') as f:
-    testData = json.load(f)
+    data = json.load(f)
 
-data = {
+testData = {
     "Charlois": {
             "Tarwewijk" : {
                 "id": 71,
