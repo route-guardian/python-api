@@ -1,7 +1,9 @@
 from flask import Flask
 from flask import request
-from route import route_api
 from flask_pymongo import PyMongo
+# Import routes
+from route import route_api
+from points import points_api
 import socket
 
 hostname = socket.gethostname()
@@ -16,16 +18,18 @@ mongo = PyMongo(app)
 
 # This blueprint adds other routes from other files
 app.register_blueprint(route_api)
+app.register_blueprint(points_api)
+
 
 @app.route("/", methods = ["GET", "POST"])
-def hello():
+def users():
     if request.method == 'POST':
-        return 'Dit is een post'    
+        return 'Put something to post here'    
     else:
         return '{ "name":"John", "age":30, "city":"New York"}'
  
 @app.route("/hello")
-def test():
+def testRoute():
     return 'ik snap python niet'
 
 if __name__ == "__main__":
