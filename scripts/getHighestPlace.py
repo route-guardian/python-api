@@ -3,7 +3,6 @@ import collections
 from collections import OrderedDict
 
 
-
 client = MongoClient('mongodb://localhost:27017/')
 
 allData ={}
