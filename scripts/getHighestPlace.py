@@ -1,6 +1,5 @@
 from flask_pymongo import MongoClient
 from collections import OrderedDict
-import collections
 
 client = MongoClient('mongodb://localhost:27017/')
 
@@ -26,7 +25,7 @@ for post in collection.find({}, {'_id': False}).limit(1).sort([( '$natural', -1 
 # Sort the array/dict
 sorted_x = sorted(allData.items(), key=lambda x: x[1], reverse = True)
 # Change
-sorted_dict = dict(collections.OrderedDict(sorted_x)) #Force to dictionary for mongodb
+sorted_dict = dict(collection.OrderedDict(sorted_x)) #Force to dictionary for mongodb
 
 print(sorted_dict)
 
