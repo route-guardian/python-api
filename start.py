@@ -3,6 +3,7 @@ from flask_pymongo import PyMongo
 # Import routes
 from route import route_api
 from points import points_api
+from score import score_api
 import socket
 
 hostname = socket.gethostname()
@@ -18,7 +19,7 @@ mongo = PyMongo(app)
 # This blueprint adds other routes from other files
 app.register_blueprint(route_api)
 app.register_blueprint(points_api)
-
+app.register_blueprint(score_api)
 
 @app.route("/", methods = ["GET", "POST"])
 def users():
