@@ -8,7 +8,6 @@ allData = {}
 db = client.safetyScore
 collection = db.safetyScore
 newCollection = db.safetyScoreSorted
-
 # Get the latest item
 for post in collection.find({}, {'_id': False}).limit(1).sort([( '$natural', -1 )]):
     for gebied, value in post.items():
@@ -25,9 +24,9 @@ for post in collection.find({}, {'_id': False}).limit(1).sort([( '$natural', -1 
 # Sort the array/dict
 sorted_x = sorted(allData.items(), key=lambda x: x[1], reverse = True)
 # Change
-sorted_dict = dict(collection.OrderedDict(sorted_x)) #Force to dictionary for mongodb
+sorted_dict = dict(OrderedDict(sorted_x)) #Force to dictionary for mongodb
 
-print(sorted_dict)
+print(collection)
 
 # add to DB
 newCollection.insert_one(sorted_dict)
