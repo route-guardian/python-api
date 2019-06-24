@@ -4,6 +4,7 @@ from flask_pymongo import PyMongo
 from route import route_api
 from points import points_api
 from score import score_api
+from geolocations import geolocations_api
 import socket
 
 hostname = socket.gethostname()
@@ -20,20 +21,24 @@ mongo = PyMongo(app)
 app.register_blueprint(route_api)
 app.register_blueprint(points_api)
 app.register_blueprint(score_api)
+app.register_blueprint(geolocations_api)
 
-@app.route("/", methods = ["GET", "POST"])
+
+@app.route("/", methods=["GET", "POST"])
 def users():
     if request.method == 'POST':
-        return 'Put something to post here'    
+        return 'Put something to post here'
     else:
         return '{ "name":"John", "age":30, "city":"New York"}'
- 
+
+
 @app.route("/hello")
 def testRoute():
     return 'ik snap python niet'
+
 
 if __name__ == "__main__":
     if 'ip' in hostname:
         app.run(host="0.0.0.0")
     else:
-        app.run( use_reloader = True)
+        app.run(use_reloader=True)
