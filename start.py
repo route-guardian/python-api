@@ -1,4 +1,5 @@
 from flask import Flask, request
+from flask_cors import CORS
 from flask_pymongo import PyMongo
 # Import routes
 from route import route_api
@@ -10,6 +11,7 @@ import socket
 hostname = socket.gethostname()
 
 app = Flask(__name__)
+CORS(app)
 
 # Setup the mongoDB
 app.config["MONGO_DBNAME"] = "routeGuardian"
