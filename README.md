@@ -6,4 +6,6 @@ Look why to use insert many? And how to use
 
 ## Packages:
   - flask
+  - flask-cors
   - PyMongo
+
