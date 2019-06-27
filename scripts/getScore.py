@@ -109,7 +109,7 @@ for gebied, district in data.items():
             if isinstance(value, str):
                 value = int(round(float(value.strip('%'))))
             # Overwrite old value with new value
-            data[gebied][district]['data'][key] = mapFromTo(value, min(allValues[a]), max(allValues[a]), 1, 10) # Get data from function   
+            data[gebied][district]['data'][key] = mapFromTo(value, min(allValues[a]), max(allValues[a]), 1, 100) # Get data from function   
             a +=1       
             pass
         a = 0

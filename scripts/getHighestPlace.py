@@ -1,9 +1,21 @@
+import operator
 from flask_pymongo import MongoClient
 from collections import OrderedDict
+
 
 client = MongoClient('mongodb://localhost:27017/')
 
 allData = {}
+
+# x -> is input value
+# a,b -> hoogste en laagste van de reeks
+# c,d -> in wat voor categorien moet het worden outgeput
+# y de value die hij returnt,
+def mapFromTo(x,a,b,c,d): 
+    y=(x-a)/(b-a)*(d-c)+c
+    return round(y)
+
+
 
 db = client.safetyScore
 collection = db.safetyScore
@@ -20,16 +32,23 @@ for post in collection.find({}, {'_id': False}).limit(1).sort([( '$natural', -1 
             calculatedData = sum(wijkData)
             allData.update({wijk : calculatedData})
         pass
-    pass    
+    pass  
 # Sort the array/dict
 sorted_x = sorted(allData.items(), key=lambda x: x[1], reverse = True)
 # Change
 sorted_dict = dict(OrderedDict(sorted_x)) #Force to dictionary for mongodb
 
-print(collection)
+testing = {}
 
+print(allData[min(allData.items(), key=operator.itemgetter(1))[0]]);
+print(allData[max(allData.items(), key=operator.itemgetter(1))[0]]);
+# get it to 1, 100
+for name ,value in allData.items():
+    testing[name] = mapFromTo(value , allData[min(allData.items(), key=operator.itemgetter(1))[0]], allData[max(allData.items(), key=operator.itemgetter(1))[0]], 1, 100)
+
+print(testing)
 # add to DB
-newCollection.insert_one(sorted_dict)
+newCollection.insert_one(testing)
 
 print("added to DB")
 
