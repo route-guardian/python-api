@@ -6,6 +6,8 @@ from route import route_api
 from points import points_api
 from score import score_api
 from geolocations import geolocations_api
+from crime import crime_api
+from cameras import cameras_api
 import socket
 
 hostname = socket.gethostname()
@@ -24,6 +26,8 @@ app.register_blueprint(route_api)
 app.register_blueprint(points_api)
 app.register_blueprint(score_api)
 app.register_blueprint(geolocations_api)
+app.register_blueprint(crime_api)
+app.register_blueprint(cameras_api)
 
 
 @app.route("/", methods=["GET", "POST"])
