@@ -13,7 +13,6 @@ def returnPoint():
         if  data['endPoint'] and data['startPoint']:
             # Create data end get all poitns
             getLatLong.getLatLong(data) # Get lat en Long from other function
-        print(data) 
         return "the post has been received"
     else:
         # Code for a get
