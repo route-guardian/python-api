@@ -7,7 +7,7 @@ client = MongoClient('mongodb://localhost:27017/')
 db = client.safetyScore
 collection = db.safetyScore
 
-with open('../data/crime.json') as data_file:
+with open('../data/crimeMapMarkers.json') as data_file:
     geolocations = json.load(data_file)
 
     crimeCollection = db.crime
