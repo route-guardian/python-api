@@ -12,8 +12,9 @@ def returnPoint():
         data = json.loads(request.data)
         if  data['endPoint'] and data['startPoint']:
             # Create data end get all poitns
-            getLatLong.getLatLong(data) # Get lat en Long from other function
-        return "the post has been received"
+            route = getLatLong.getLatLong(data) # Get lat en Long from other function
+
+        return dumps(route)
     else:
         # Code for a get
         return 'LMAO we here bois'    
